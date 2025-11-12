@@ -22,8 +22,8 @@ def load_json(path, **rest):
 class Paths:
     def __init__(self, output_dir):
         self.output_dir = output_dir
-        self.save_marked_dir = output_dir.joinpath("CheckedOMRs")
-        self.results_dir = output_dir.joinpath("Results")
+        self.save_marked_dir = output_dir.joinpath("")
+        self.results_dir = output_dir.joinpath("")
         self.manual_dir = output_dir.joinpath("Manual")
         self.evaluation_dir = output_dir.joinpath("Evaluation")
         self.errors_dir = self.manual_dir.joinpath("ErrorFiles")

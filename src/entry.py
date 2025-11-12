@@ -14,6 +14,7 @@ from time import time
 import cv2
 import pandas as pd
 from rich.table import Table
+import json
 
 from src import constants
 from src.defaults import CONFIG_DEFAULTS
@@ -282,6 +283,13 @@ def process_files(
             )
         else:
             logger.info(f"(/{files_counter}) Processed file: '{file_id}'")
+
+        read_response_path = outputs_namespace.paths.output_dir.joinpath("read_response.json")
+        with open(read_response_path, "w", encoding="utf-8") as f:
+            json.dump(omr_response, f, indent=4)
+        score_path = outputs_namespace.paths.output_dir.joinpath("score.txt")
+        with open(score_path, "w", encoding="utf-8") as f:
+            f.write(str(round(score, 2)))
 
         if tuning_config.outputs.show_image_level >= 2:
             InteractionUtils.show(
